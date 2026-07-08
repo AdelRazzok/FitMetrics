@@ -1,0 +1,14 @@
+{
+  "name": "fit-metrics",
+  "version": "1.0.0",
+  "description": "",
+  "main": "dist/index.js",
+  "scripts": {
+    "build": "tsc"
+  },
+  "private": true,
+  "devDependencies": {
+    "prettier": "^3.9.4",
+    "typescript": "^6.0.3"
+  }
+}
