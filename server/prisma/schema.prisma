@@ -1,0 +1,17 @@
+generator client {
+  provider = "prisma-client"
+  output   = "../generated/prisma"
+}
+
+datasource db {
+  provider = "sqlite"
+}
+
+model WorkoutSession {
+  id                String   @id @default(uuid())
+  title             String
+  activity          String
+  durationInSeconds Int
+  date              DateTime
+  intensity         Int?
+}

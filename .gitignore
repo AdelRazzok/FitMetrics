@@ -27,6 +27,7 @@ yarn-error.log*
 .sqlite3
 /server/prisma/.db
 /server/prisma/.db-journal
+/server/generated/prisma
 
 /client/dist/
 /client/build/
