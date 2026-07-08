@@ -4,8 +4,11 @@ const fastify = Fastify({
   logger: true,
 })
 
-fastify.get('/', function (request, reply) {
-  reply.send({ hello: 'world' })
+fastify.get('/health', function (request, reply) {
+  reply.send({
+    status: 'OK',
+    timestamp: new Date().toISOString(),
+  })
 })
 
 fastify.listen({ port: 3000 }, function (err, address) {
