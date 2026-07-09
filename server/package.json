@@ -1,14 +1,14 @@
 {
-  "name": "server",
+  "name": "@fitmetrics/server",
   "version": "1.0.0",
   "type": "module",
-  "main": "",
   "scripts": {
     "dev": "tsx watch src/index.ts",
     "studio": "npx -p better-sqlite3 -p prisma prisma studio --url file:./dev.db"
   },
   "private": true,
   "dependencies": {
+    "@fitmetrics/shared": "*",
     "@prisma/adapter-better-sqlite3": "^7.8.0",
     "@prisma/client": "^7.8.0",
     "dotenv": "^17.4.2",

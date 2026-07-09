@@ -1,5 +1,4 @@
-export type Activity =
-  'Running' | 'Swimming' | 'Weightlifting' | 'Cycling' | 'Yoga'
+import { Activity } from '@fitmetrics/shared'
 
 export interface WorkoutSession {
   id: string
@@ -9,6 +8,3 @@ export interface WorkoutSession {
   date: string
   intensity: number | null
 }
-
-export type CreateWorkoutSessionDTO = Omit<WorkoutSession, 'id'>
-export type UpdateWorkoutSessionDTO = Partial<CreateWorkoutSessionDTO>
