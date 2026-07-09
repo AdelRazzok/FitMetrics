@@ -4,7 +4,7 @@
   "type": "module",
   "main": "",
   "scripts": {
-    "dev": "tsx watch src/server.ts",
+    "dev": "tsx watch src/index.ts",
     "studio": "npx -p better-sqlite3 -p prisma prisma studio --url file:./dev.db"
   },
   "private": true,
