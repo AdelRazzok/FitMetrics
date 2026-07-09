@@ -1,13 +1,13 @@
-import { WorkoutSessionRepository } from '../../domain/ports/WorkoutSessionRepository'
 import {
-  WorkoutSession,
   CreateWorkoutSessionDTO,
   UpdateWorkoutSessionDTO,
   Activity,
-} from '../../domain/entities/WorkoutSession'
+} from '@fitmetrics/shared'
+import { WorkoutSessionRepository } from '../../domain/ports/WorkoutSessionRepository'
+import { WorkoutSession } from '../../domain/entities/WorkoutSession'
 import { prisma } from '../database/prisma'
 
-export class PrismaWorkoutSessionAdapter implements WorkoutSessionRepository {
+export class SQLWorkoutSessionRepository implements WorkoutSessionRepository {
   async findAll(): Promise<WorkoutSession[]> {
     const sessions = await prisma.workoutSession.findMany()
     return sessions.map(this.mapToDomain)

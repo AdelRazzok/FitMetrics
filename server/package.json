@@ -8,11 +8,13 @@
   },
   "private": true,
   "dependencies": {
+    "@fastify/type-provider-zod": "^1.0.0",
     "@fitmetrics/shared": "*",
     "@prisma/adapter-better-sqlite3": "^7.8.0",
     "@prisma/client": "^7.8.0",
     "dotenv": "^17.4.2",
-    "fastify": "^5.10.0"
+    "fastify": "^5.10.0",
+    "fastify-plugin": "^6.0.0"
   },
   "devDependencies": {
     "@types/better-sqlite3": "^7.6.13",
