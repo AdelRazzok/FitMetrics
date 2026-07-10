@@ -43,4 +43,22 @@ export async function workoutSessionRoutes(fastify: FastifyInstance) {
       return reply.status(200).send(session)
     },
   )
+
+  server.delete(
+    '/:id',
+    {
+      schema: {
+        params: z.object({
+          id: z.string({
+            error: "L'identifiant est requis.",
+          }),
+        }),
+      },
+    },
+    async (request, reply) => {
+      await fastify.di.deleteSessionUseCase.execute(request.params.id)
+
+      return reply.status(204).send()
+    },
+  )
 }
