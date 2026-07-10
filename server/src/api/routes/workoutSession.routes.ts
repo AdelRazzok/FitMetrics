@@ -6,11 +6,14 @@ import { DomainError } from '../../domain/errors/DomainError'
 export async function workoutSessionRoutes(fastify: FastifyInstance) {
   const server = fastify.withTypeProvider<ZodTypeProvider>()
 
+  server.get('/', async (request, reply) => {
+    const sessions = await fastify.di.getAllWorkoutSessionsUseCase.execute()
+    return reply.status(200).send(sessions)
+  })
+
   server.post(
     '/',
-    {
-      schema: { body: createWorkoutSessionSchema },
-    },
+    { schema: { body: createWorkoutSessionSchema } },
     async (request, reply) => {
       const session = await fastify.di.createSessionUseCase.execute(
         request.body,
