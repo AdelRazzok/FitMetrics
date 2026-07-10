@@ -3,6 +3,7 @@ import {
   serializerCompiler,
   validatorCompiler,
 } from '@fastify/type-provider-zod'
+import { errorPlugin } from './api/plugins/error.plugin'
 import { diPlugin } from './api/plugins/di.plugin'
 import { workoutSessionRoutes } from './api/routes/workoutSession.routes'
 
@@ -17,6 +18,7 @@ fastify.get('/api/health', function (request, reply) {
   })
 })
 
+fastify.register(errorPlugin)
 fastify.register(diPlugin)
 fastify.register(workoutSessionRoutes, { prefix: '/api/sessions' })
 

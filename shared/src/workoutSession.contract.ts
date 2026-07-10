@@ -31,7 +31,7 @@ export const createWorkoutSessionSchema = z.object({
   intensity: z
     .int("L'intensité doit être un nombre entier.")
     .min(1, "L'intensité doit être strictement supérieure à 0.")
-    .max(10, "L'intensité doit être strictement inférieure à 11.")
+    .max(10, "L'intensité doit être inférieure ou égale à 10.")
     .optional()
     .nullable(),
 })
