@@ -1,7 +1,10 @@
 import { FastifyInstance } from 'fastify'
 import { ZodTypeProvider } from '@fastify/type-provider-zod'
-import { createWorkoutSessionSchema } from '@fitmetrics/shared'
-import { DomainError } from '../../domain/errors/DomainError'
+import {
+  createWorkoutSessionSchema,
+  updateWorkoutSessionSchema,
+} from '@fitmetrics/shared'
+import { z } from 'zod'
 
 export async function workoutSessionRoutes(fastify: FastifyInstance) {
   const server = fastify.withTypeProvider<ZodTypeProvider>()
@@ -19,6 +22,25 @@ export async function workoutSessionRoutes(fastify: FastifyInstance) {
         request.body,
       )
       return reply.status(201).send(session)
+    },
+  )
+
+  server.patch(
+    '/:id',
+    {
+      schema: {
+        params: z.object({
+          id: z.string().min(1, "L'identifiant est requis."),
+        }),
+        body: updateWorkoutSessionSchema,
+      },
+    },
+    async (request, reply) => {
+      const session = await fastify.di.updateSessionUseCase.execute(
+        request.params.id,
+        request.body,
+      )
+      return reply.status(200).send(session)
     },
   )
 }
