@@ -1,8 +1,9 @@
 import {
-  WorkoutSession,
   CreateWorkoutSessionDTO,
   UpdateWorkoutSessionDTO,
-} from '../entities/WorkoutSession'
+  DashboardKPIsDTO,
+} from '@fitmetrics/shared'
+import { WorkoutSession } from '../entities/WorkoutSession'
 
 export interface WorkoutSessionRepository {
   findAll(): Promise<WorkoutSession[]>
@@ -10,4 +11,5 @@ export interface WorkoutSessionRepository {
   create(data: CreateWorkoutSessionDTO): Promise<WorkoutSession>
   update(id: string, data: UpdateWorkoutSessionDTO): Promise<WorkoutSession>
   delete(id: string): Promise<void>
+  getDashboardKPIs(): Promise<DashboardKPIsDTO>
 }

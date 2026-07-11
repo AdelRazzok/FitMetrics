@@ -14,6 +14,11 @@ export async function workoutSessionRoutes(fastify: FastifyInstance) {
     return reply.status(200).send(sessions)
   })
 
+  server.get('/kpis', async (request, reply) => {
+    const kpis = await fastify.di.getDashboardKPIsUseCase.execute()
+    return reply.status(200).send(kpis)
+  })
+
   server.post(
     '/',
     { schema: { body: createWorkoutSessionSchema } },

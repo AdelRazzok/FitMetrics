@@ -38,5 +38,13 @@ export const createWorkoutSessionSchema = z.object({
 
 export const updateWorkoutSessionSchema = createWorkoutSessionSchema.partial()
 
+export const dashboardKPIsSchema = z.object({
+  totalSessions: z.int().nonnegative(),
+  totalDurationInSeconds: z.int().nonnegative(),
+  averageDurationInSeconds: z.int().nonnegative(),
+  favoriteActivity: z.enum(ACTIVITY_TYPES).nullable(),
+})
+
 export type CreateWorkoutSessionDTO = z.infer<typeof createWorkoutSessionSchema>
 export type UpdateWorkoutSessionDTO = z.infer<typeof updateWorkoutSessionSchema>
+export type DashboardKPIsDTO = z.infer<typeof dashboardKPIsSchema>

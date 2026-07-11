@@ -4,12 +4,14 @@ import { GetAllWorkoutSessionsUseCase } from '../../application/use-cases/GetAll
 import { CreateWorkoutSessionUseCase } from '../../application/use-cases/CreateWorkoutSessionUseCase'
 import { UpdateWorkoutSessionUseCase } from '../../application/use-cases/UpdateWorkoutSessionUseCase'
 import { DeleteWorkoutSessionUseCase } from '../../application/use-cases/DeleteWorkoutSessionUseCase'
+import { GetDashboardKPIsUseCase } from '../../application/use-cases/GetDashboardKPIsUseCase'
 
 export interface DIContainer {
   getAllWorkoutSessionsUseCase: GetAllWorkoutSessionsUseCase
   createSessionUseCase: CreateWorkoutSessionUseCase
   updateSessionUseCase: UpdateWorkoutSessionUseCase
   deleteSessionUseCase: DeleteWorkoutSessionUseCase
+  getDashboardKPIsUseCase: GetDashboardKPIsUseCase
 }
 
 declare module 'fastify' {
@@ -26,6 +28,7 @@ export const diPlugin = fp(async (fastify) => {
     createSessionUseCase: new CreateWorkoutSessionUseCase(repository),
     updateSessionUseCase: new UpdateWorkoutSessionUseCase(repository),
     deleteSessionUseCase: new DeleteWorkoutSessionUseCase(repository),
+    getDashboardKPIsUseCase: new GetDashboardKPIsUseCase(repository),
   }
 
   fastify.decorate('di', container)

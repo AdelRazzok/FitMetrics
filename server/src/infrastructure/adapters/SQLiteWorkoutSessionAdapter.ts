@@ -1,6 +1,7 @@
 import {
   CreateWorkoutSessionDTO,
   UpdateWorkoutSessionDTO,
+  DashboardKPIsDTO,
   Activity,
 } from '@fitmetrics/shared'
 import { WorkoutSessionRepository } from '../../domain/ports/WorkoutSessionRepository'
@@ -51,6 +52,35 @@ export class SQLWorkoutSessionRepository implements WorkoutSessionRepository {
 
   async delete(id: string): Promise<void> {
     await prisma.workoutSession.delete({ where: { id } })
+  }
+
+  async getDashboardKPIs(): Promise<DashboardKPIsDTO> {
+    const aggregates = await prisma.workoutSession.aggregate({
+      _count: { id: true },
+      _sum: { durationInSeconds: true },
+      _avg: { durationInSeconds: true },
+    })
+
+    const favoriteActivityGroup = await prisma.workoutSession.groupBy({
+      by: ['activity'],
+      _count: { id: true },
+      orderBy: [{ _count: { id: 'desc' } }, { _max: { date: 'desc' } }],
+      take: 1,
+    })
+
+    return {
+      totalSessions: aggregates._count.id,
+      totalDurationInSeconds: Math.round(
+        aggregates._sum.durationInSeconds || 0,
+      ),
+      averageDurationInSeconds: Math.round(
+        aggregates._avg.durationInSeconds || 0,
+      ),
+      favoriteActivity:
+        favoriteActivityGroup.length > 0
+          ? (favoriteActivityGroup[0].activity as Activity)
+          : null,
+    }
   }
 
   private mapToDomain(prismaSession: any): WorkoutSession {
