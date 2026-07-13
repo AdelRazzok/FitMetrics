@@ -1,7 +1,9 @@
+import { Dashboard } from '@/features/dashboard/Dashboard'
+
 export const App = () => {
   return (
     <main>
-      <h1 className="text-xl">FitMetrics</h1>
+      <Dashboard />
     </main>
   )
 }
