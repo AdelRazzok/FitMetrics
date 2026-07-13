@@ -3,6 +3,7 @@ import {
   serializerCompiler,
   validatorCompiler,
 } from '@fastify/type-provider-zod'
+import cors from '@fastify/cors'
 import { errorPlugin } from './api/plugins/error.plugin'
 import { diPlugin } from './api/plugins/di.plugin'
 import { workoutSessionRoutes } from './api/routes/workoutSession.routes'
@@ -16,6 +17,13 @@ fastify.get('/api/health', function (request, reply) {
     status: 'OK',
     timestamp: new Date().toISOString(),
   })
+})
+
+await fastify.register(cors, {
+  origin: 'http://localhost:5173',
+  methods: ['GET', 'POST', 'PATCH', 'DELETE', 'OPTIONS'],
+  allowedHeaders: ['Content-Type', 'Authorization'],
+  credentials: true,
 })
 
 fastify.register(errorPlugin)

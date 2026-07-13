@@ -17,7 +17,7 @@ export interface WorkoutSessionResponse {
 const BASE_PATH = '/sessions'
 
 export async function getDashboardKPIs(): Promise<DashboardKPIsDTO> {
-  return apiClient<DashboardKPIsDTO>(`${BASE_PATH}/dashboard`)
+  return apiClient<DashboardKPIsDTO>(`${BASE_PATH}/kpis`)
 }
 
 export async function getWorkoutSessions(): Promise<WorkoutSessionResponse[]> {

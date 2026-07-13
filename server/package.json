@@ -8,6 +8,7 @@
   },
   "private": true,
   "dependencies": {
+    "@fastify/cors": "^11.3.0",
     "@fastify/type-provider-zod": "^1.0.0",
     "@fitmetrics/shared": "*",
     "@prisma/adapter-better-sqlite3": "^7.8.0",
