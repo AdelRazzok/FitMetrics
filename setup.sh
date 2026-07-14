@@ -21,6 +21,7 @@ npm install
 echo -e "\n💾 Configuration de la base de données SQLite..."
 cd server
 npx prisma db push
+npx prisma generate
 cd ..
 
 echo -e "\n==============================================="
