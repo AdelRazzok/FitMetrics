@@ -1,11 +1,12 @@
 import { useState } from 'react'
+import { toast } from 'sonner'
+import { Pencil } from 'lucide-react'
 import {
   Dialog,
   DialogContent,
   DialogHeader,
   DialogTitle,
 } from '@/components/ui/dialog'
-import { Pencil } from 'lucide-react'
 import { useUpdateWorkoutSession } from '../hooks/useWorkoutQueries'
 import { WorkoutSessionForm } from './WorkoutSessionForm'
 
@@ -51,6 +52,9 @@ export const UpdateSessionModal = ({ session }: UpdateSessionModalProps) => {
                   {
                     onSuccess: () => {
                       setIsOpen(false)
+                      toast.success('Session modifiée avec succès.', {
+                        position: 'top-center',
+                      })
                     },
                   },
                 )

@@ -1,10 +1,12 @@
 import { useState } from 'react'
+import { toast } from 'sonner'
 import {
   Dialog,
   DialogContent,
   DialogHeader,
   DialogTitle,
 } from '@/components/ui/dialog'
+
 import { Button } from '@/components/ui/button'
 import { useCreateWorkoutSession } from '../hooks/useWorkoutQueries'
 import { WorkoutSessionForm } from './WorkoutSessionForm'
@@ -34,6 +36,9 @@ export const CreateSessionModal = () => {
                 createSession(data, {
                   onSuccess: () => {
                     setIsOpen(false)
+                    toast.success('Session créée avec succès.', {
+                      position: 'top-center',
+                    })
                   },
                 })
               }}

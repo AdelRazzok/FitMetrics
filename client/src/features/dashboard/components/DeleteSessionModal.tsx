@@ -1,4 +1,5 @@
 import { Trash2 } from 'lucide-react'
+import { toast } from 'sonner'
 import {
   AlertDialog,
   AlertDialogTrigger,
@@ -43,7 +44,15 @@ export const DeleteSessionModal = ({ session }: DeleteSessionModalProps) => {
         <AlertDialogFooter>
           <AlertDialogCancel disabled={isPending}>Annuler</AlertDialogCancel>
           <AlertDialogAction
-            onClick={() => deleteSession(session.id)}
+            onClick={() =>
+              deleteSession(session.id, {
+                onSuccess: () => {
+                  toast.success('Session supprimée avec succès.', {
+                    position: 'top-center',
+                  })
+                },
+              })
+            }
             disabled={isPending}
             className="bg-red-600 hover:bg-red-700 focus:ring-red-600"
           >
