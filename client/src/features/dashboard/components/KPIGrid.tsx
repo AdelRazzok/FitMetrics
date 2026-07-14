@@ -1,3 +1,4 @@
+import { ACTIVITY_LABELS } from '@fitmetrics/shared'
 import { useDashboardKPIs } from '../hooks/useWorkoutQueries'
 
 export const KPIGrid = () => {
@@ -34,20 +35,20 @@ export const KPIGrid = () => {
     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
       <div className="p-6 bg-white rounded-xl border border-slate-200 shadow-sm">
         <h3 className="text-sm font-medium text-slate-500">
-          Total des Sessions
+          Nombre de sessions
         </h3>
         <p className="text-3xl font-bold mt-2">{kpis.totalSessions}</p>
       </div>
 
       <div className="p-6 bg-white rounded-xl border border-slate-200 shadow-sm">
-        <h3 className="text-sm font-medium text-slate-500">Durée Totale</h3>
+        <h3 className="text-sm font-medium text-slate-500">Durée totale</h3>
         <p className="text-3xl font-bold mt-2 text-blue-600">
           {formatDuration(kpis.totalDurationInSeconds)}
         </p>
       </div>
 
       <div className="p-6 bg-white rounded-xl border border-slate-200 shadow-sm">
-        <h3 className="text-sm font-medium text-slate-500">Durée Moyenne</h3>
+        <h3 className="text-sm font-medium text-slate-500">Durée moyenne</h3>
         <p className="text-3xl font-bold mt-2 text-indigo-600">
           {formatDuration(kpis.averageDurationInSeconds)}
         </p>
@@ -55,10 +56,12 @@ export const KPIGrid = () => {
 
       <div className="p-6 bg-white rounded-xl border border-slate-200 shadow-sm">
         <h3 className="text-sm font-medium text-slate-500">
-          Activité Favorite
+          Activité favorite
         </h3>
-        <p className="text-3xl font-bold mt-2 capitalize">
-          {kpis.favoriteActivity || 'Aucune'}
+        <p className="text-3xl font-bold mt-2">
+          {kpis.favoriteActivity
+            ? ACTIVITY_LABELS[kpis.favoriteActivity]
+            : 'Aucune'}
         </p>
       </div>
     </div>

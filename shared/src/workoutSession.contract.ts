@@ -10,6 +10,14 @@ export const ACTIVITY_TYPES = [
 
 export type Activity = (typeof ACTIVITY_TYPES)[number]
 
+export const ACTIVITY_LABELS: Record<Activity, string> = {
+  Running: 'Course à pied',
+  Swimming: 'Natation',
+  Weightlifting: 'Haltérophilie',
+  Cycling: 'Cyclisme',
+  Yoga: 'Yoga',
+} as const
+
 export const createWorkoutSessionSchema = z.object({
   title: z
     .string('Le titre doit être une chaîne de caractères.')

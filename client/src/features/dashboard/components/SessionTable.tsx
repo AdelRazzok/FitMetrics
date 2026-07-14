@@ -44,11 +44,13 @@ export const SessionTable = () => {
       <Table>
         <TableHeader className="bg-slate-50">
           <TableRow>
-            <TableHead>Date</TableHead>
-            <TableHead>Titre</TableHead>
-            <TableHead>Activité</TableHead>
-            <TableHead>Durée</TableHead>
-            <TableHead className="text-right">Intensité</TableHead>
+            <TableHead className="font-semibold">Date</TableHead>
+            <TableHead className="font-semibold">Titre</TableHead>
+            <TableHead className="font-semibold">Activité</TableHead>
+            <TableHead className="font-semibold">Durée</TableHead>
+            <TableHead className="text-right font-semibold">
+              Intensité
+            </TableHead>
           </TableRow>
         </TableHeader>
         <TableBody>

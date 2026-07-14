@@ -1,6 +1,6 @@
-import { Button } from '@/components/ui/button'
 import { KPIGrid } from './components/KPIGrid'
 import { SessionTable } from './components/SessionTable'
+import { CreateSessionModal } from './components/CreateSessionModal'
 
 export const Dashboard = () => {
   return (
@@ -9,11 +9,11 @@ export const Dashboard = () => {
         <div>
           <h1 className="text-3xl font-bold tracking-tight">FitMetrics</h1>
           <p className="text-slate-500 mt-1">
-            Analyse de tes performances sportives.
+            Analyse tes performances sportives.
           </p>
         </div>
 
-        <Button>+ Nouvelle Session</Button>
+        <CreateSessionModal />
       </header>
 
       <section className="pb-4">
