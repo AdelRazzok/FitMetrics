@@ -1,4 +1,3 @@
-import { Trash2 } from 'lucide-react'
 import {
   Table,
   TableBody,
@@ -7,25 +6,12 @@ import {
   TableHeader,
   TableRow,
 } from '@/components/ui/table'
-import {
-  AlertDialog,
-  AlertDialogTrigger,
-  AlertDialogContent,
-  AlertDialogHeader,
-  AlertDialogTitle,
-  AlertDialogDescription,
-  AlertDialogFooter,
-  AlertDialogCancel,
-  AlertDialogAction,
-} from '@/components/ui/alert-dialog'
-import {
-  useDeleteWorkoutSession,
-  useWorkoutSessions,
-} from '../hooks/useWorkoutQueries'
+import { UpdateSessionModal } from '@/features/dashboard/components/UpdateSessionModal'
+import { DeleteSessionModal } from '@/features/dashboard/components/DeleteSessionModal'
+import { useWorkoutSessions } from '../hooks/useWorkoutQueries'
 
 export const SessionTable = () => {
   const { data: sessions, isLoading, isError } = useWorkoutSessions()
-  const { mutate: deleteSession } = useDeleteWorkoutSession()
 
   if (isLoading) {
     return (
@@ -103,38 +89,9 @@ export const SessionTable = () => {
                 </TableCell>
 
                 <TableCell className="text-center">
-                  <AlertDialog>
-                    <AlertDialogTrigger className="inline-flex items-center justify-center h-8 w-8 rounded-md text-red-500 hover:text-red-700 hover:bg-red-50 transition-colors focus:outline-none focus:ring-2 focus:ring-slate-400 focus:ring-offset-2">
-                      <Trash2 className="h-4 w-4 cursor-pointer" />
-                      <span className="sr-only">Supprimer {session.title}</span>
-                    </AlertDialogTrigger>
+                  <UpdateSessionModal session={session} />
 
-                    <AlertDialogContent>
-                      <AlertDialogHeader>
-                        <AlertDialogTitle>
-                          Supprimer l'entraînement ?
-                        </AlertDialogTitle>
-                        <AlertDialogDescription>
-                          Tu es sur le point de supprimer la session{' '}
-                          <span className="font-semibold text-slate-900">
-                            "{session.title}"
-                          </span>
-                          . Cette action est irréversible et retirera ces
-                          données de tes statistiques globales.
-                        </AlertDialogDescription>
-                      </AlertDialogHeader>
-
-                      <AlertDialogFooter>
-                        <AlertDialogCancel>Annuler</AlertDialogCancel>
-                        <AlertDialogAction
-                          onClick={() => deleteSession(session.id)}
-                          className="bg-red-600 hover:bg-red-700 focus:ring-red-600"
-                        >
-                          Oui, supprimer
-                        </AlertDialogAction>
-                      </AlertDialogFooter>
-                    </AlertDialogContent>
-                  </AlertDialog>
+                  <DeleteSessionModal session={session} />
                 </TableCell>
               </TableRow>
             ))
